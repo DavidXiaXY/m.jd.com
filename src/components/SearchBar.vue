@@ -80,7 +80,7 @@
 		border: none;
 		outline: none;
 		padding-left: 40px;
-		background-color: #fff;
+		background-color: #f7f7f7;;
 		box-sizing: border-box;
 	}
 	
