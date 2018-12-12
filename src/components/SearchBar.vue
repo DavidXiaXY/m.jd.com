@@ -11,7 +11,7 @@
 			<span class="fa fa-user"></span>
 		</div>
 			
-		<search-page v-model="show"></search-page>
+		<search-page v-model="show"  @search="search"></search-page>
 	</div>
 
 </template>
@@ -32,6 +32,12 @@
 		computed: {},
 		created() {
 			console.log("search-bar");
+		},
+		methods:{
+			search(val){
+				console.log(val);
+				this.$router.push({name:'search',params:{product:val}});
+			}
 		},
 		mounted() {
 			var self = this;

@@ -2,25 +2,15 @@
 
 	<div class="search-page">
 
-		<!--<div class="search-bar weui-flex" :class="{fixed:fixed}">
-			<div class="category">
-				<span class="fa fa-th-list"></span>
-			</div>
-			<div class="search weui-flex__item">
-				<input type="search" placeholder="请输入搜索内容"  />
-			</div>
-			<div class="user">
-				<span class="fa fa-user"></span>
-			</div>
-		</div>-->
+		
 
-		<input type="text" v-model="keyword" name="" id="" value="" /> <button @click="search">搜索</button>
+		<input type="text" v-model="keyword" name="" id="" value="" @focus="show=true" />
 
 		<product v-for="(item,index) in products" :id="item.id" :title="item.title" :image="item.image" :price="item.price"></product>
 
 		<bottom></bottom>
 
-		<search-page v-model="show"></search-page>
+		<search-page v-model="show" @search="search"></search-page>
 
 	</div>
 </template>
@@ -41,15 +31,8 @@
 			};
 		},
 		methods: {
-			search() {
-				axios.post(this.serveRoot + "/index.php/api/index/searchProduct", qs.stringify({
-					keyword: this.keyword,
-					id:123,
-					order:456
-				})).then(res => {
-					console.log(res);
-					this.products = res.data;
-				}).catch(err => {});
+			search(val){
+				this.products = val;	
 			}
 		},
 		components: {
@@ -59,7 +42,12 @@
 		},
 		created() {
 			console.log(this.$route);
-			console.log(this.$router);
+			
+			if(this.$route.params.product!=null){
+				this.products = this.$route.params.product;
+			}
+			
+//			console.log(this.$router);
 		}
 	}
 </script>
