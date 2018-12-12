@@ -20,13 +20,16 @@
 	export default {
 		data() {
 			return {
-				data: [],
+				data: [{image:require('../assets/images/swiper.jpg'),url:''}],
 			};
 		},
 		methods: {
 			getSwiper() {
-				axios.get(this.serveRoot+'/index.php/api/index/getSwiper').then(res => {
+				axios.get(this.serveRoot+'/index.php/api/index/getSwiper')
+				.then(res => {
 					this.data = res.data;
+				}).catch(err=>{
+					console.log("服务器错误！")
 				});
 			}
 		},

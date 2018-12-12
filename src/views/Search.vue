@@ -5,6 +5,9 @@
 		<input type="text" name="" @focus="show=true" id="" value="" /> 
 		
 		
+		<product v-for="(item,index) in products" :id="item.id" :title="item.title" :image="item.image" :price="item.price"></product>
+		
+		
 		<bottom></bottom>
 
 		<search-page v-model="show"></search-page>
@@ -15,6 +18,7 @@
 <script>
 	import Bottom from "@/components/Footer"
 	import SearchPage from "@/components/SearchPage"
+	import Product from "@/components/SearchProduct"
 	import axios from "axios"
 	export default {
 		data() {
@@ -34,7 +38,8 @@
 		},
 		components: {
 			Bottom,
-			SearchPage
+			SearchPage,
+			Product
 		},
 		created() {
 			console.log(this.$route);
