@@ -14,7 +14,7 @@ import Goods from './components/Goods.vue'
 import Comment from './components/Comment.vue'
 import Detail from './components/Detail.vue'
 import Recommend from './components/Recommend.vue'
-
+import Login from './views/Login.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -47,20 +47,11 @@ const router = new Router({
 	}, {
 		path: '/product',
 		name: 'product',
-		component: Product,
-		children: [{
-			path: 'goods',
-			component: Goods
-		}, {
-			path: 'detail',
-			component: Detail
-		}, {
-			path: 'comment',
-			component: Comment
-		}, {
-			path: 'recommend',
-			component: Recommend
-		}]
+		component: Product
+	}, {
+		path: '/login',
+		name: 'login',
+		component: Login
 	}]
 });
 

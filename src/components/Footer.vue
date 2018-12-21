@@ -34,11 +34,32 @@
 					icon: 'fa-shopping-cart',
 					to: '/cart',
 				}, {
-					title: '我的',
+					title: '未登录',
 					icon: 'fa-user',
 					to: '/user',
 				}]
 			}
+		},
+		computed: {
+			login() {
+				return this.$store.state.user.login;
+			}
+		},
+		watch: {
+			login(val) {
+				console.log(val);
+				if(val) {
+					this.nav[4].title = "我的";
+				} else {
+					this.nav[4].title = "未登录";
+				}
+			}
+		},
+		created() {
+			if(this.login) {
+				this.nav[4].title = "我的";
+			}
+			console.log(this.login);
 		}
 	}
 </script>
