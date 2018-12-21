@@ -9,6 +9,26 @@
 	import Bottom from "@/components/Footer"
 	export default {
 		name: 'user',
+		data() {
+			return {};
+		},
+		methods: {},
+		computed: {
+			login() {
+				return this.$store.state.user.login;
+			}
+		},
+		created() {
+			// 如果未登录则跳转到登录页面
+			if(!this.login) {
+				this.$router.push({
+					path: '/login',
+					query: {
+						from: '/user'
+					}
+				});
+			}
+		},
 		components: {
 			Bottom
 		}

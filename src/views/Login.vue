@@ -51,6 +51,7 @@
 				loginUrl: "http://api.niyinlong.com/index.php/api/index/login",
 				name: '',
 				pwd: '',
+				from:'',
 				loading:false
 			};
 		},
@@ -70,11 +71,15 @@
 					})).then(res => {
 						alert(res.data.msg);
 						if(res.data.code>0){
-							
 							this.$store.commit('setLoginState',true);
-							this.$router.push('/');
+							this.loading = false;
+							// 控制登录后该去的地方
+							switch(this.from){
+								case '/cart':this.$router.push('/cart');break;
+								case '/user':this.$router.push('/user');break;
+								default:this.$router.push('/');break;
+							}
 						}
-						this.loading = false;
 					}).catch(err => {
 						this.loading = false;
 					});
@@ -93,7 +98,16 @@
 			}
 		},
 		watch: {},
-		created() {},
+		created() {
+			// 获取来的方向
+			this.from = this.$route.query.from;
+			
+			// 当前页的路由对象
+			console.log(this.$route);
+			// 全局路由对象
+			console.log(this.$router);
+			
+		},
 		mounted() {},
 		updated() {},
 		components: {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="http://www.baidu.com">百度</a>
+		<script type="text/javascript">
+			
+			// 放入一个新的球
+			// location.assign('http://www.feifanedu.com.cn');
+			// 用一个新球替换当前的球
+			// location.replace('');
+			// 把球拿出来擦一擦再放进去
+			// location.reload();
+//			
+//			$.ajax({
+//				type:"post",
+//				url:"/",
+//				data:{id:123,keyword:'水果'},
+//				success:function(res){},
+//				error:function(err){},
+//				async:true
+//			});
+			
+			
+			// 读写sessionStorage
+			
+			// setItem(key,value);
+			// value = getItem(key);
+			
+			// 字符串和对象的转换（sessionStorage只能保存一个字符串）。
+			
+			// object => string  JSON.stringify();
+			// string => object  JSON.parse();
+			
+			
+			var obj = {login:true};	
+			var str = JSON.stringify(obj);
+			window.sessionStorage.setItem('jd_user_login_state',str);
+			
+			var str2 = window.sessionStorage.getItem('jd_user_login_state');
+			
+			console.log(JSON.parse(str2).login);
+				
+		</script>
+	</body>
+</html>

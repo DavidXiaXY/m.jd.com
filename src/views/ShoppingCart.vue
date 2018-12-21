@@ -2,9 +2,15 @@
 	<div class="shopping-cart">
 		<top-bar>购物车</top-bar>
 
-		<div class="shopping-list">
+		<div class="shopping-cart-empty" v-if="!login">
+			<img src="../assets/images/nothing.png">
+			<p>登录后可同步购物车中商品 </p>
+			<router-link :to="{path:'/login',query:{from:'/cart'}}" class="weui-btn weui-btn_plain-primary">登录</router-link>
+		</div>
 
-			<div class="item weui-flex" v-for="(item,index) in products"  :key="index">
+		<div class="shopping-list" v-if="login">
+
+			<div class="item weui-flex" v-for="(item,index) in products" :key="index">
 				<!--选中框 -->
 				<div class="select">
 					<span class="check-box " :class="{checked:item.select}" @click="select(index)"></span>
@@ -32,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="fixbar weui-flex">
+		<div class="fixbar weui-flex" v-if="login">
 			<div class="select-all" @click="selectAll">
 				<span class="check-box" :class="{checked:all}"></span>
 				<span class="all">全选</span>
@@ -148,16 +154,42 @@
 					n += this.selects[i].count * this.selects[i].price;
 				}
 				return n;
+			},
+			login() {
+				return this.$store.state.user.login;
 			}
 
 		},
 		components: {
 			TopBar
+		},
+		created() {
+//			console.log(this.login);
 		}
 	}
 </script>
 
 <style>
+	
+	.shopping-cart-empty{
+		    padding: 30px 0 15px;
+    	text-align: center;
+	}
+	.shopping-cart-empty img{
+		width: 90px;
+	}
+	
+	.shopping-cart-empty p{
+		    font-size: 16px;
+    color: rgba(51,51,51,.66);
+    line-height: 24px;
+    margin: 11px 0;
+	}
+	
+	.shopping-cart-empty .weui-btn{
+		width: 60px;
+		    font-size: 14px;
+	}
 	.shopping-list {}
 	
 	.shopping-list .item {

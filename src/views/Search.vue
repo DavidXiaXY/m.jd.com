@@ -2,10 +2,10 @@
 
 	<div class="search-page">
 
+		<top-bar><input class="search1" type="text" v-model="keyword" name="" id="" placeholder="请输入搜索内容" value="" @focus="show=true" />
+</top-bar>
+
 		
-
-		<input type="text" v-model="keyword" name="" id="" value="" @focus="show=true" />
-
 		<product v-for="(item,index) in products" :id="item.id" :title="item.title" :image="item.image" :price="item.price"></product>
 
 		<bottom></bottom>
@@ -17,6 +17,7 @@
 
 <script>
 	import Bottom from "@/components/Footer"
+	import TopBar from "@/components/TopBar"
 	import SearchPage from "@/components/SearchPage"
 	import Product from "@/components/SearchProduct"
 	import axios from "axios"
@@ -38,7 +39,8 @@
 		components: {
 			Bottom,
 			SearchPage,
-			Product
+			Product,
+			TopBar
 		},
 		created() {
 			console.log(this.$route);
@@ -52,8 +54,18 @@
 	}
 </script>
 
-<style>
+<style >
 	.search-bar {
 		border-bottom: solid 1px #CCCCCC;
+	}
+    .search1{
+		border: 1px solid darkgray;
+		display: block;
+		width: 500px;
+		height: 24px;
+		border-radius: 20px;
+		margin:0 auto;
+		margin-top: 9px;
+		padding-left: 40px;
 	}
 </style>
