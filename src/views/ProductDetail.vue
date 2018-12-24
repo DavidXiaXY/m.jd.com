@@ -5,15 +5,15 @@
 		<top-bar>
 
 			<ul>
-				<li :class="{active:navIndex==index}" v-for="(item,index) in nav" @click="navIndex=index"> <span v-text="item.title"></span> </li>
+				<li :class="{active:navIndex==index}" v-for="(item,index) in nav" @click="navIndex=index;scroll(item.ref)"> <span v-text="item.title"></span> </li>
 			</ul>
 
 		</top-bar>
 
-		<div id="product" style="height: 300px;background-color: red;"></div>
-		<div id="comment" style="height: 300px;background-color: green;"></div>
-		<div id="detail" style="height: 300px;background-color: blue;"></div>
-		<div id="recommend" style="height: 300px;background-color: deeppink;" @click="scroll" ></div>
+		<div id="product" ref="product" style="height: 600px;background-color: red;"></div>
+		<div id="comment" ref="comment" style="height: 600px;background-color: green;"></div>
+		<div id="detail" ref="detail" style="height: 600px;background-color: blue;"></div>
+		<div id="recommend" ref="recommend" style="height: 600px;background-color: deeppink;" ></div>
 
 	</div>
 
@@ -25,16 +25,16 @@
 		data() {
 			return {
 				nav: [{
-					ref: '',
+					ref: 'product',
 					title: '商品'
 				}, {
-					ref: '',
+					ref: 'comment',
 					title: '评价'
 				}, {
-					ref: '',
+					ref: 'detail',
 					title: '详情'
 				}, {
-					ref: '',
+					ref: 'recommend',
 					title: '推荐'
 				}],
 				navIndex: 0,
@@ -42,11 +42,27 @@
 		},
 		
 		methods:{
-			scroll(){
+			scroll(ref){
 				
+				console.log(this.$refs[ref]);
+				var top = this.$refs[ref].offsetTop;
+//				var tmp = document.documentElement.scrollTop;
+//				var count = 20;
+//				var step = (top-tmp)/count;
+//				var t = setInterval(()=>{
+//					
+//					tmp += step;
+//					document.documentElement.scrollTop = tmp;
+//					count--;
+//					
+//					if(count<=0){
+//						clearInterval(t);
+//					}
+//					
+//				},50);
 				
-				
-				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = top;
+//				document.body.scrollTop = top;
 			}
 		},
 		mounted() {
@@ -60,8 +76,7 @@
 	}
 </script>
 
-<style scoped>
-	
+<style>
 	.top-bar{
 		width: 100%;
 		position: fixed;
