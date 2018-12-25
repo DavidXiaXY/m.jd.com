@@ -9,12 +9,14 @@ import Cart from './views/ShoppingCart.vue'
 import User from './views/UserCenter.vue'
 import Category from './views/Category.vue'
 import Search from './views/Search.vue'
-import Product from './views/ProductDetail.vue'
+import Product  from './views/ProductDetail.vue'
 import Goods from './components/Goods.vue'
 import Comment from './components/Comment.vue'
 import Detail from './components/Detail.vue'
 import Recommend from './components/Recommend.vue'
 import Login from './views/Login.vue'
+
+
 Vue.use(Router)
 
 const router = new Router({
